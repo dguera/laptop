@@ -53,19 +53,19 @@ brew "coreutils"
 brew "pam_reattach"
 
 # Casks
-cask iterm2
-cask anaconda
-cask anki
-cask bartender
-cask bettertouchtool
-cask contexts
-cask istat-menus
-cask mactex
-cask mendeley-desktop
-cask osxfuse
-cask spotify
-cask sublime-text
-cask tikzit
-cask typora
-cask visual-studio-code
+cask "iterm2"
+cask "anaconda"
+cask "anki"
+cask "bartender"
+cask "bettertouchtool"
+cask "contexts"
+cask "istat-menus"
+cask "mactex"
+cask "mendeley-desktop"
+cask "osxfuse"
+cask "spotify"
+cask "sublime-text"
+cask "tikzit"
+cask "typora"
+cask "visual-studio-code"
 EOF
