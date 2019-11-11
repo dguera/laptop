@@ -3,6 +3,14 @@
 # Be prepared to turn your laptop or desktop
 # into an awesome development machine.
 
+# Helpful functions
+fancy_echo() {
+  local fmt="$1"; shift
+
+  # shellcheck disable=SC2059
+  printf "\\n$fmt\\n" "$@"
+}
+
 # Brew : The missing package manager for macOS
 # https://brew.sh/
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -18,7 +26,7 @@ brew install mas
 brew install zsh
 # zprezto : https://github.com/sorin-ionescu/prezto
 git clone --recursive https://github.com/dguera/prezto.git
-/bin/zsh -i -c setopt EXTENDED_GLOB; for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" done
+/bin/zsh -i -c "setopt EXTENDED_GLOB; for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" done"
 chsh -s /bin/zsh
 
 if brew list | grep -Fq brew-cask; then
