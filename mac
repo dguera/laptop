@@ -9,7 +9,6 @@
 
 # Git
 brew install git
-git config --global core.autocrlf input
 
 # mas-cli : A simple command line interface for the Mac App Store. Designed for scripting and automation.
 # https://github.com/mas-cli/mas
@@ -18,13 +17,8 @@ brew install mas
 # Zsh and prezto
 brew install zsh
 # zprezto : https://github.com/sorin-ionescu/prezto
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-ln -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zlogin" ~/.zlogin
-ln -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zlogout" ~/.zlogout
-ln -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zpreztorc" ~/.zpreztorc
-ln -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zprofile" ~/.zprofile
-ln -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshenv" ~/.zshenv
-ln -s "${ZDOTDIR:-$HOME}/.zprezto/runcoms/zshrc" ~/.zshrc
+git clone --recursive https://github.com/dguera/prezto.git
+/bin/zsh -i -c setopt EXTENDED_GLOB; for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" done
 chsh -s /bin/zsh
 
 if brew list | grep -Fq brew-cask; then
@@ -54,6 +48,9 @@ brew "imagemagick"
 
 # Programming language prerequisites and package managers
 brew "coreutils"
+
+# Enable touch id with sudo on iTerm 2
+brew "pam_reattach"
 
 # Casks
 cask iterm2
