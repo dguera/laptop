@@ -24,10 +24,19 @@ brew install mas
 
 # Zsh and prezto
 brew install zsh
-# zprezto : https://github.com/sorin-ionescu/prezto
-git clone --recursive https://github.com/dguera/prezto.git
-/bin/zsh -i -c "setopt EXTENDED_GLOB; for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}" done"
-chsh -s /bin/zsh
+# Prezto : https://github.com/sorin-ionescu/prezto
+/bin/zsh -c '
+git clone --recursive https://github.com/dguera/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+chsh -s /bin/zsh'
+
+# Install prezto contrib
+cd $ZPREZTODIR
+git clone --recurse-submodules https://github.com/belak/prezto-contrib contrib
+cd -
 
 if brew list | grep -Fq brew-cask; then
   fancy_echo "Uninstalling old Homebrew-Cask ..."
@@ -56,6 +65,7 @@ brew "imagemagick"
 
 # Programming language prerequisites and package managers
 brew "coreutils"
+brew "thefuck"
 
 # Enable touch id with sudo on iTerm 2
 brew "pam_reattach"
@@ -77,3 +87,6 @@ cask "tikzit"
 cask "typora"
 cask "visual-studio-code"
 EOF
+
+# Install font for iTerm2
+cd ~/Library/Fonts && { curl -O 'https://github.com/nathco/Office-Code-Pro/raw/master/Fonts/Office%20Code%20Pro/OTF/' ; cd -; }
